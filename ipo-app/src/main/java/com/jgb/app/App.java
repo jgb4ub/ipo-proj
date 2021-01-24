@@ -17,13 +17,22 @@ public class App
             
             Document doc2 = Jsoup.connect("https://finance.yahoo.com/calendar/ipo?from=2021-01-17&to=2021-01-23&day=2021-01-19").get();
             
-            Document doc3 = Jsoup.connect(" https://www.marketwatch.com/tools/ipo-calendar").get();
+            Document doc3 = Jsoup.connect("https://www.marketwatch.com/tools/ipo-calendar").get();
      
-            System.out.printf("Title: %s\n", doc1.title());/*,"\n ",doc2.title(),"\n ", doc3.title()*/
+            //System.out.printf("Title: %s\n", doc1.title());/*,"\n ",doc2.title(),"\n ", doc3.title()*/
             
-            System.out.printf("Title: %s\n", doc2.title());
+            //System.out.printf("Title: %s\n", doc2.title());
 
-            System.out.printf("Title: %s\n", doc3.title());
+            //System.out.printf("Title: %s\n", doc3.title());
+
+            Elements table = doc3.getElementsByClass("is-active").select("table").select("tbody").select(".table__row");
+            //table = table.getElementsByClass("table__row");
+            //System.out.println(table);
+            //System.out.println(table.getClass() +"\n");
+            for (Element line : table){
+                //line = line.select("a");
+                System.out.println(line.child(0).child(0).html() + "\n");
+            }
 
           } catch (IOException e) {
             e.printStackTrace();
